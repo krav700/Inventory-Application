@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "populate": "node db/populateDB.js"
+    "populate": "node db/populateDB.js",
+    "drop": "node db/dropDB.js"
   },
   "keywords": [],
   "author": "",

@@ -1,9 +1,10 @@
 <div class="part-container">
+    <% console.log(parts) %>
     <% parts.forEach(part => { %>
         <div class="part">
-            <h1><%= part.name %></h1>
-            <h1><%= part.category %></h1>
-            <h1><%= part.price %>$</h1>
+            <h1><%= part.part_name %></h1>
+            <h1><%= part.category_name %></h1>
+            <h1><%= part.part_price %>$</h1>
             <h1><%= part.producer_name %></h1>
         </div>
     <% }); %>
