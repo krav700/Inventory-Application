@@ -1,23 +1,4 @@
 const db = require("../db/queries");
-const { body, validationResult, matchedData } = require("express-validator");
-
-const emptyErr = "must not be empty.";
-const lengthErr = "must be betweeen 1 and 10 characters.";
-
-const validateUser = [
-    body("category")
-        .trim()
-        .notEmpty()
-        .withMessage(`Category ${emptyErr}`)
-        .isLength({ min: 3, max: 50 })
-        .withMessage(`Category must be between 3 and 50 characters.`),
-    body("part")
-        .trim()
-        .notEmpty()
-        .withMessage(`Part ${emptyErr}`)
-        .isLength({ min: 3, max: 255 })
-        .withMessage(`Part must be between 3 and 255 characters.`),
-];
 
 async function getCategories(req, res) {
     const categories = await db.getCategories();

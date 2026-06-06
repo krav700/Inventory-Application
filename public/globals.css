@@ -14,6 +14,10 @@
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   img, picture, video, canvas, svg {
@@ -45,7 +49,12 @@ a, link {
     text-decoration: none;
 }
 
+.error {
+    color: red;
+}
+
 .category-container {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
@@ -66,4 +75,11 @@ a, link {
     background: rgb(68, 136, 214);;
     border: 5px solid rgb(26, 67, 115);
     color: rgb(213, 233, 255);
+}
+
+.add-category-btn {
+    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
 }

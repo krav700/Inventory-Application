@@ -1,11 +1,11 @@
 <div class="part-container">
-    <% console.log(parts) %>
-    <% parts.forEach(part => { %>
-        <div class="part">
-            <h1><%= part.part_name %></h1>
-            <h1><%= part.category_name %></h1>
-            <h1><%= part.part_price %>$</h1>
-            <h1><%= part.producer_name %></h1>
-        </div>
-    <% }); %>
+    <div class="part">
+        <h1><%= parts[0].part_name %></h1>
+        <h1><%= parts[0].category_name %></h1>
+        <h1><%= parts[0].part_price %>$</h1>
+        <h1><%= parts[0].producer_name %></h1>
+    </div>
+    <a href="/parts/<%= encodeURIComponent(parts[0].part_name) %>/edit">
+        <button>Edit</button>
+    </a>
 </div>

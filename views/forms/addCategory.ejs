@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inventory Application | Add Category</title>
+        <link rel="stylesheet" href="/globals.css">
+    </head>
+    <body>
+        <%- include('../partials/errors') %>
+        <h1>Add a new Category</h1>
+        <form action="/category/add" method="POST">
+            <label for="categoryName">Category Name:</label>
+            <input
+                type="text"
+                id="categoryName"
+                name="categoryName"
+                value="<%= locals.categoryName || ''%>"
+                required
+            />
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inventory Application | Add Part</title>
+        <link rel="stylesheet" href="/globals.css">
+    </head>
+    <body>
+        <%- include('../partials/errors') %>
+        <h1>Add a new Part</h1>
+        <form action="/category/<%= encodeURIComponent(locals.categoryName) %>/add" method="POST">
+            <label for="partName">Part Name:</label>
+            <br>
+            <input
+                type="text"
+                id="partName"
+                name="partName"
+                value="<%= locals.partName || ''%>"
+                required
+            />
+            <br>
+            <label for="partPrice">Part Price:</label>
+            <br>
+            <input
+                type="number"
+                id="partPrice"
+                name="partPrice"
+                value="<%= locals.partPrice || ''%>"
+                step="0.01"
+                required
+            />
+            <br>
+            <label for="partProducer">Part Producer:</label>
+            <br>
+            <input
+                type="text"
+                id="partProducer"
+                name="partProducer"
+                value="<%= locals.partProducer || ''%>"
+                required
+            />
+            <br>
+            <label for="partCategory">Category Name:</label>
+            <br>
+            <input
+                type="text"
+                id="partCategory"
+                name="partCategory"
+                value="<%= locals.partCategory %>"
+                readonly
+            />
+            <br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
