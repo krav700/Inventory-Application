@@ -1,14 +1,28 @@
-<div class="parts-container">
-    <% parts.forEach(part => { %>
-        <a href="/parts/<%= encodeURIComponent(part.name) %>" >
-            <div class="category">
-                <h1><%= part.name %></h1>
-                <h1><%= part.price %>$</h1>
-            </div>
-        </a>
-    <% }); %>
+<h1><%= category %></h1>
+<button command="show-modal" commandfor="change-category-name">✏️</button>
 
-    <a href="/category/<%= category %>/new">
-        <button class="add-category-btn">+</button>
-    </a>
+<dialog id="change-category-name">
+  <form action="/category/<%= encodeURIComponent(locals.category) %>/updateName" method="post">
+    <input type="text" id="oldCategoryName" name="oldCategoryName" value="<%= locals.category %>" hidden>
+    <label for="categoryName">Category Name:</label>
+    <br>
+    <input type="text" id="newCategoryName" name="newCategoryName" value="<%= locals.category %>">
+    <button>Submit</button>
+  </form>
+  <button command="close" commandfor="change-category-name">close</button>
+</dialog>
+
+<div class="parts-container">
+  <% parts.forEach(part => { %>
+  <a href="/parts/<%= encodeURIComponent(part.name) %>">
+    <div class="category">
+      <h1><%= part.name %></h1>
+      <h1><%= part.price %>$</h1>
+    </div>
+  </a>
+  <% }); %>
+
+  <a href="/category/<%= category %>/new">
+    <button class="add-category-btn">+</button>
+  </a>
 </div>

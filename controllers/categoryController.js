@@ -92,6 +92,12 @@ const insertCategoryPart = [
     },
 ];
 
+async function updateCategoryName(req, res) {
+    const { oldCategoryName, newCategoryName } = req.body;
+    await db.updateCategoryName(oldCategoryName, newCategoryName);
+    res.redirect(`/category/${newCategoryName}`);
+}
+
 // async function newMessage(req, res) {
 //     res.render("new", {});
 // }
@@ -156,6 +162,7 @@ module.exports = {
     insertCategory,
     newCategoryPart,
     insertCategoryPart,
+    updateCategoryName,
     // getMessages,
     // newMessage,
     // getMessageById,

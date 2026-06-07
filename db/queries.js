@@ -1,7 +1,7 @@
 const pool = require("./pool.js");
 
 async function getCategories() {
-    const { rows } = await pool.query("SELECT DISTINCT name FROM categories;");
+    const { rows } = await pool.query("SELECT DISTINCT name FROM categories ORDER BY name;");
     return rows;
 }
 
@@ -43,6 +43,13 @@ async function editPart(oldPartName, newPartName, newPartPrice, newPartProducer)
     );
 }
 
+async function updateCategoryName(oldCategoryName, newCategoryName) {
+    await pool.query(
+        "UPDATE categories SET name = $1 WHERE name = $2",
+        [newCategoryName, oldCategoryName],
+    );
+}
+
 module.exports = {
     getCategories,
     getCategoryParts,
@@ -50,4 +57,5 @@ module.exports = {
     insertCategory,
     insertPart,
     editPart,
+    updateCategoryName
 };
