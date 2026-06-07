@@ -60,6 +60,14 @@ const updatePartInfo = [
     },
 ];
 
+async function deletePart(req, res) {
+    const part = req.params.splat[0];
+    const partInfo = await db.getPartInfo(part);
+    const { part_id, part_name, category_name } = partInfo[0];
+    await db.deletePart(part_id);
+    res.redirect(`/category/${category_name}`);
+}
+
 // async function getMessageById(req, res) {
 //     const id = req.params.messageId;
 //     const messageById = await db.getMessageById(id);
@@ -74,5 +82,6 @@ const updatePartInfo = [
 module.exports = {
     getPartInfo,
     editPartInfo,
-    updatePartInfo
+    updatePartInfo,
+    deletePart
 };

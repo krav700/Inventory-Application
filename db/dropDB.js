@@ -4,9 +4,7 @@ const { Client } = require("pg");
 require('dotenv').config();
 
 const SQL = `
-DROP TABLE parts_producers;
 DROP TABLE parts_categories;
-DROP TABLE producers;
 DROP TABLE categories;
 DROP TABLE pc_parts;
 `;

@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS categories (
 );
 
 CREATE TABLE IF NOT EXISTS parts_categories (
-    part_id INTEGER REFERENCES pc_parts(id),
-    category_id INTEGER REFERENCES categories(id)
+    part_id INTEGER REFERENCES pc_parts(id) ON DELETE CASCADE,
+    category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
 INSERT INTO categories (name) VALUES

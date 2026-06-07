@@ -98,6 +98,14 @@ async function updateCategoryName(req, res) {
     res.redirect(`/category/${newCategoryName}`);
 }
 
+async function deleteCategory(req, res) {
+    const categoryName = req.params.splat[0];
+    const categoryInfo = await db.getCategoryInfo(categoryName);
+    const { categoryid } = categoryInfo[0];
+    await db.deleteCategory(categoryid);
+    res.redirect("/");
+}
+
 // async function newMessage(req, res) {
 //     res.render("new", {});
 // }
@@ -163,6 +171,7 @@ module.exports = {
     newCategoryPart,
     insertCategoryPart,
     updateCategoryName,
+    deleteCategory
     // getMessages,
     // newMessage,
     // getMessageById,

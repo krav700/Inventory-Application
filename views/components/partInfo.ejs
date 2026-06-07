@@ -8,4 +8,10 @@
     <a href="/parts/<%= encodeURIComponent(parts[0].part_name) %>/edit">
         <button>Edit</button>
     </a>
+    <form
+        action="/parts/<%= encodeURIComponent(parts[0].part_name) %>/delete"
+        method="post"
+    >
+        <button>Delete</button>
+    </form>
 </div>

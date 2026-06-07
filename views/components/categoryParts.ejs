@@ -1,5 +1,8 @@
 <h1><%= category %></h1>
 <button command="show-modal" commandfor="change-category-name">✏️</button>
+<form action="/category/<%= encodeURIComponent(locals.category) %>/deleteCategory" method="post">
+    <button>❌</button>
+</form>
 
 <dialog id="change-category-name">
   <form action="/category/<%= encodeURIComponent(locals.category) %>/updateName" method="post">
