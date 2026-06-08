@@ -34,6 +34,9 @@ async function getPartInfo(req, res) {
 }
 
 async function editPartInfo(req, res) {
+    if (!req.session.auth) {
+        return res.render("forms/authUser");
+    }
     const part = req.params.splat[0];
     const partInfo = await db.getPartInfo(part);
     const { part_name, part_price, category_name, producer_name } = partInfo[0];
@@ -61,23 +64,15 @@ const updatePartInfo = [
 ];
 
 async function deletePart(req, res) {
+    if (!req.session.auth) {
+        return res.render("forms/authUser");
+    }
     const part = req.params.splat[0];
     const partInfo = await db.getPartInfo(part);
     const { part_id, part_name, category_name } = partInfo[0];
     await db.deletePart(part_id);
     res.redirect(`/category/${category_name}`);
 }
-
-// async function getMessageById(req, res) {
-//     const id = req.params.messageId;
-//     const messageById = await db.getMessageById(id);
-//     res.render("messages/messageId", { message: messageById });
-// }
-
-// async function deleteAllMessages(req, res) {
-//     await db.deleteAllMessages();
-//     res.redirect("/");
-// }
 
 module.exports = {
     getPartInfo,

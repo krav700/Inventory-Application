@@ -1,4 +1,14 @@
 const db = require("../db/queries");
+const { body, validationResult, matchedData } = require("express-validator");
+
+const validateUser = [
+    body("adminPassword")
+        .trim()
+        .notEmpty()
+        .withMessage(`User password must not be empty.`)
+        .equals("admin")
+        .withMessage(`User password is incorect.`)
+];
 
 async function getCategories(req, res) {
     const categories = await db.getCategories();
@@ -11,69 +21,25 @@ async function getCategories(req, res) {
     });
 }
 
-// async function newMessage(req, res) {
-//     res.render("new", {});
-// }
+const authUser = [
+    validateUser,
+    async (req, res) => {
+        const { adminPassword } = req.body;
 
-// const insertMessage = [
-//     validateUser,
-//     async (req, res) => {
-//         const { message, username } = req.body;
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).render("forms/authUser", {
+                errors: errors.array(),
+            });
+        }
 
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.status(400).render("new", {
-//                 message: message,
-//                 username: username,
-//                 errors: errors.array(),
-//             });
-//         }
-
-//         await db.insertMessage(message, username);
-//         res.redirect("/");
-//     },
-// ];
-
-// exports.usersUpdatePost = [
-//     validateUser,
-//     (req, res) => {
-//         const user = usersStorage.getUser(req.params.id);
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.status(400).render("updateUser", {
-//                 title: "Update user",
-//                 user: user,
-//                 errors: errors.array(),
-//             });
-//         }
-//         const { firstName, lastName, email, age, bio } = matchedData(req);
-//         usersStorage.updateUser(req.params.id, {
-//             firstName,
-//             lastName,
-//             email,
-//             age,
-//             bio,
-//         });
-//         res.redirect("/");
-//     },
-// ];
-
-// async function getMessageById(req, res) {
-//     const id = req.params.messageId;
-//     const messageById = await db.getMessageById(id);
-//     res.render("messages/messageId", { message: messageById });
-// }
-
-// async function deleteAllMessages(req, res) {
-//     await db.deleteAllMessages();
-//     res.redirect("/");
-// }
+        req.session.auth = "approved";
+        const backUrl = req.get('Referrer') || '/';
+        res.redirect(backUrl);
+    },
+];
 
 module.exports = {
     getCategories,
-    // getMessages,
-    // newMessage,
-    // getMessageById,
-    // insertMessage,
-    // deleteAllMessages,
+    authUser
 };

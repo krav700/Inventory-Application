@@ -10,7 +10,7 @@ const validateCategory = [
         .notEmpty()
         .withMessage(`Category Name ${emptyErr}`)
         .isLength({ min: 3, max: 50 })
-        .withMessage(`Category must be between 3 and 50 characters.`)
+        .withMessage(`Category must be between 3 and 50 characters.`),
 ];
 const validatePart = [
     body("partName")
@@ -30,7 +30,7 @@ const validatePart = [
         .withMessage(`Part Price ${emptyErr}`)
         .isLength({ min: 3, max: 50 })
         .withMessage(`Part Producer must be between 3 and 50 characters.`),
-];  
+];
 
 async function getCategoryParts(req, res) {
     const category = req.params.splat[0];
@@ -52,6 +52,10 @@ const insertCategory = [
     validateCategory,
     async (req, res) => {
         const { categoryName } = req.body;
+
+        if (!req.body.auth) {
+            return res.render("forms/authUser");
+        }
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -79,7 +83,7 @@ const insertCategoryPart = [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).render(`forms/addPart`, {
-                partName, 
+                partName,
                 partPrice,
                 partProducer,
                 partCategory,
@@ -93,76 +97,24 @@ const insertCategoryPart = [
 ];
 
 async function updateCategoryName(req, res) {
+    if (!req.session.auth) {
+        return res.render("forms/authUser");
+    }
     const { oldCategoryName, newCategoryName } = req.body;
     await db.updateCategoryName(oldCategoryName, newCategoryName);
     res.redirect(`/category/${newCategoryName}`);
 }
 
 async function deleteCategory(req, res) {
+    if (!req.session.auth) {
+        return res.render("forms/authUser");
+    }
     const categoryName = req.params.splat[0];
     const categoryInfo = await db.getCategoryInfo(categoryName);
     const { categoryid } = categoryInfo[0];
     await db.deleteCategory(categoryid);
     res.redirect("/");
 }
-
-// async function newMessage(req, res) {
-//     res.render("new", {});
-// }
-
-// const insertMessage = [
-//     validateUser,
-//     async (req, res) => {
-//         const { message, username } = req.body;
-
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.status(400).render("new", {
-//                 message: message,
-//                 username: username,
-//                 errors: errors.array(),
-//             });
-//         }
-
-//         await db.insertMessage(message, username);
-//         res.redirect("/");
-//     },
-// ];
-
-// exports.usersUpdatePost = [
-//     validateUser,
-//     (req, res) => {
-//         const user = usersStorage.getUser(req.params.id);
-//         const errors = validationResult(req);
-//         if (!errors.isEmpty()) {
-//             return res.status(400).render("updateUser", {
-//                 title: "Update user",
-//                 user: user,
-//                 errors: errors.array(),
-//             });
-//         }
-//         const { firstName, lastName, email, age, bio } = matchedData(req);
-//         usersStorage.updateUser(req.params.id, {
-//             firstName,
-//             lastName,
-//             email,
-//             age,
-//             bio,
-//         });
-//         res.redirect("/");
-//     },
-// ];
-
-// async function getMessageById(req, res) {
-//     const id = req.params.messageId;
-//     const messageById = await db.getMessageById(id);
-//     res.render("messages/messageId", { message: messageById });
-// }
-
-// async function deleteAllMessages(req, res) {
-//     await db.deleteAllMessages();
-//     res.redirect("/");
-// }
 
 module.exports = {
     getCategoryParts,
@@ -171,10 +123,5 @@ module.exports = {
     newCategoryPart,
     insertCategoryPart,
     updateCategoryName,
-    deleteCategory
-    // getMessages,
-    // newMessage,
-    // getMessageById,
-    // insertMessage,
-    // deleteAllMessages,
+    deleteCategory,
 };

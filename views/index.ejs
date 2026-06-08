@@ -10,11 +10,11 @@
     <div>
         <%- include('header') %>
     </div>
-    <% if(categories) { %>
+    <% if(locals.categories) { %>
         <%- include('components/categories', { categories }) %>
     <% } %>
-    <a href="/category/new">
+    <form action="/category/new">
         <button class="add-category-btn">+</button>
-    </a>
+    </form>
 </body>
 </html>
