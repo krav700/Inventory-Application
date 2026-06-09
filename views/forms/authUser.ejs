@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="/globals.css">
     </head>
     <body>
+        <%- include('../header') %>
         <%- include('../partials/errors') %>
-        <h1>Admin Password Check</h1>
+        <h2 class="form-title">Admin Password Check</h2>
         <form action="/auth" method="POST">
             <label for="adminPassword">Admin Password:</label>
             <br>

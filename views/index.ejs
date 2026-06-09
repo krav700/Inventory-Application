@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="/globals.css">
 </head>
 <body>
-    <div>
-        <%- include('header') %>
-    </div>
+    <%- include('header') %>
     <% if(locals.categories) { %>
         <%- include('components/categories', { categories }) %>
     <% } %>

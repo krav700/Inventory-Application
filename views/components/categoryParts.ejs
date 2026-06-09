@@ -1,31 +1,47 @@
-<h1><%= category %></h1>
-<button command="show-modal" commandfor="change-category-name">✏️</button>
-<form action="/category/<%= encodeURIComponent(locals.category) %>/deleteCategory" method="post">
-    <button>❌</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
 
-<dialog id="change-category-name">
-  <form action="/category/<%= encodeURIComponent(locals.category) %>/updateName" method="post">
-    <input type="text" id="oldCategoryName" name="oldCategoryName" value="<%= locals.category %>" hidden>
-    <label for="categoryName">Category Name:</label>
-    <br>
-    <input type="text" id="newCategoryName" name="newCategoryName" value="<%= locals.category %>">
-    <button>Submit</button>
-  </form>
-  <button command="close" commandfor="change-category-name">close</button>
-</dialog>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Application | Category</title>
+  <link rel="stylesheet" href="/globals.css" />
+</head>
 
-<div class="parts-container">
-  <% parts.forEach(part => { %>
-  <a href="/parts/<%= encodeURIComponent(part.name) %>">
-    <div class="category">
-      <h1><%= part.name %></h1>
-      <h1><%= part.price %>$</h1>
-    </div>
-  </a>
-  <% }); %>
+<body>
+  <%- include('../header') %>
 
+  <h2 class="category-title"><%= category %></h2>
+<div class="category-actions">
+      <button command="show-modal" commandfor="change-category-name">✏️</button>
+      <form action="/category/<%= encodeURIComponent(locals.category) %>/deleteCategory" method="post">
+          <button>❌</button>
+        </form>
+</div>
+
+  <dialog id="change-category-name">
+    <form action="/category/<%= encodeURIComponent(locals.category) %>/updateName" method="post">
+      <input type="text" id="oldCategoryName" name="oldCategoryName" value="<%= locals.category %>" hidden>
+      <label for="categoryName">Category Name:</label>
+      <br>
+      <input type="text" id="newCategoryName" name="newCategoryName" value="<%= locals.category %>">
+      <button>Submit</button>
+    </form>
+    <button command="close" commandfor="change-category-name">close</button>
+  </dialog>
+
+  <div class="category-parts-container">
+    <% parts.forEach(part => { %>
+    <a href="/parts/<%= encodeURIComponent(part.name) %>" draggable="false" class="category category-part">
+      <div>
+        <h1><%= part.name %></h1>
+        <h1><%= part.price %>$</h1>
+      </div>
+    </a>
+    <% }); %>
+  </div>
   <a href="/category/<%= category %>/new">
     <button class="add-category-btn">+</button>
   </a>
-</div>
+</body>
+</html>

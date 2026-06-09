@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="/globals.css">
     </head>
     <body>
+        <%- include('../header') %>
         <%- include('../partials/errors') %>
-        <h1>Add a new Part</h1>
+        <h2 class="form-title">Add a new Part</h2>
         <form action="/category/<%= encodeURIComponent(locals.categoryName) %>/add" method="POST">
             <label for="partName">Part Name:</label>
             <br>

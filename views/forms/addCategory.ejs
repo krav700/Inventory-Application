@@ -7,10 +7,12 @@
         <link rel="stylesheet" href="/globals.css">
     </head>
     <body>
+        <%- include('../header') %>
         <%- include('../partials/errors') %>
-        <h1>Add a new Category</h1>
+        <h2 class="form-title">Add a new Category</h2>
         <form action="/category/add" method="POST">
             <label for="categoryName">Category Name:</label>
+            <br>
             <input
                 type="text"
                 id="categoryName"

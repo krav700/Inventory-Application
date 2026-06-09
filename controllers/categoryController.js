@@ -53,10 +53,6 @@ const insertCategory = [
     async (req, res) => {
         const { categoryName } = req.body;
 
-        if (!req.body.auth) {
-            return res.render("forms/authUser");
-        }
-
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).render("forms/addCategory", {
