@@ -93,7 +93,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 350ms;
+    transition: color 350ms, transform 350ms;
 }
 
 button:hover {
@@ -230,7 +230,7 @@ dialog button {
     box-shadow: inset 0px 0px 5px 5px rgb(26, 67, 115);
     color: rgb(213, 233, 255);
     font-family: Georgia, "Times New Roman", Times, serif;
-    transition: all 350ms;
+    transition: background 350ms, transform 350ms;
 }
 
 .category:hover {
