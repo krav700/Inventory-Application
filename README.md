@@ -7,3 +7,5 @@ A PC parts inventory management application that allows users to view available 
 The application is built entirely on the server side using EJS for rendering and follows the MVC design pattern. It leverages Express.js as the web framework, PostgreSQL for data storage, express-validator for validating user input, and express-session for session management and authentication.
 
 #### You can check out the app using the link in the sidebar or by clicking [here](https://inventory-application-xpsx.onrender.com/)!
+
+##### Deployment and Database from [render!](https://render.com)
