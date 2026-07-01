@@ -22,7 +22,7 @@ const validatePart = [
         .withMessage(`Part Price ${emptyErr}`)
         .isLength({ min: 3, max: 50 })
         .withMessage(`Part Producer must be between 3 and 50 characters.`),
-];  
+];
 
 async function getPartInfo(req, res) {
     const part = req.params.splat[0];
@@ -40,9 +40,14 @@ async function editPartInfo(req, res) {
     const part = req.params.splat[0];
     const partInfo = await db.getPartInfo(part);
     const { part_name, part_price, category_name, producer_name } = partInfo[0];
-    res.render("forms/editPart", { oldPartName: part_name, partName: part_name, partPrice: part_price, partCategory: category_name, partProducer: producer_name });
+    res.render("forms/editPart", {
+        oldPartName: part_name,
+        partName: part_name,
+        partPrice: part_price,
+        partCategory: category_name,
+        partProducer: producer_name,
+    });
 }
-
 
 const updatePartInfo = [
     validatePart,
@@ -52,13 +57,13 @@ const updatePartInfo = [
         if (!errors.isEmpty()) {
             return res.status(400).render(`forms/editPart`, {
                 oldPartName,
-                partName, 
+                partName,
                 partPrice,
                 partProducer,
                 errors: errors.array(),
             });
         }
-        await db.editPart(oldPartName ,partName, partPrice, partProducer);
+        await db.editPart(oldPartName, partName, partPrice, partProducer);
         res.redirect(`/parts/${partName}`);
     },
 ];
@@ -78,5 +83,5 @@ module.exports = {
     getPartInfo,
     editPartInfo,
     updatePartInfo,
-    deletePart
+    deletePart,
 };

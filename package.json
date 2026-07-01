@@ -1,23 +1,23 @@
 {
-  "name": "inventory-application",
-  "type": "commonjs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "populate": "node db/populateDB.js",
-    "drop": "node db/dropDB.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^17.4.2",
-    "ejs": "^5.0.2",
-    "express": "^5.2.1",
-    "express-session": "^1.19.0",
-    "express-validator": "^7.3.2",
-    "pg": "^8.20.0"
-  }
+    "name": "inventory-application",
+    "type": "commonjs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "populate": "node db/populateDB.js",
+        "drop": "node db/dropDB.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "ejs": "^5.0.2",
+        "express": "^5.2.1",
+        "express-session": "^1.19.0",
+        "express-validator": "^7.3.2",
+        "pg": "^8.20.0"
+    }
 }

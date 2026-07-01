@@ -8,4 +8,5 @@ The application is built entirely on the server side using EJS for rendering and
 
 #### You can check out the app using the link in the sidebar or by clicking [here](https://inventory-application-xpsx.onrender.com/)!
 
-##### Deployment and Database from [render!](https://render.com)
+##### Deployment from [render!](https://render.com)
+##### Database from [neon!](https://neon.com)

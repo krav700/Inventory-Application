@@ -1,9 +1,9 @@
 <div class="category-container">
-    <% categories.forEach(category => { %>
-        <a href="/category/<%= encodeURIComponent(category.name) %>" draggable="false">
-            <div class="category">
-                <h1><%= category.name %></h1>
-            </div>
-        </a>
-    <% }); %>
+  <% categories.forEach(category => { %>
+  <a href="/category/<%= encodeURIComponent(category.name) %>" draggable="false">
+    <div class="category">
+      <h1><%= category.name %></h1>
+    </div>
+  </a>
+  <% }); %>
 </div>

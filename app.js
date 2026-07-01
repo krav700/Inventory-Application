@@ -6,11 +6,13 @@ const categoryRouter = require("./routes/categoryRouter.js");
 const partsRouter = require("./routes/partsRouter.js");
 const session = require("express-session");
 
-app.use(session({
-    secret: "secret-key",
-    resave: false,
-    saveUninitialized: true
-}));
+app.use(
+    session({
+        secret: "secret-key",
+        resave: false,
+        saveUninitialized: true,
+    }),
+);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

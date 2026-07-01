@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Application</title>
-    <link rel="stylesheet" href="/globals.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Application</title>
+  <link rel="stylesheet" href="/globals.css">
 </head>
+
 <body>
-    <%- include('header') %>
-    <% if(locals.categories) { %>
-        <%- include('components/categories', { categories }) %>
-    <% } %>
-    <form action="/category/new">
-        <button class="add-category-btn">+</button>
-    </form>
+  <%- include('header') %>
+  <% if(locals.categories) { %>
+  <%- include('components/categories', { categories }) %>
+  <% } %>
+  <form action="/category/new">
+    <button class="add-category-btn">+</button>
+  </form>
 </body>
+
 </html>

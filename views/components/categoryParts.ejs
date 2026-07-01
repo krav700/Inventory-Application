@@ -12,12 +12,12 @@
   <%- include('../header') %>
 
   <h2 class="category-title"><%= category %></h2>
-<div class="category-actions">
-      <button command="show-modal" commandfor="change-category-name">✏️</button>
-      <form action="/category/<%= encodeURIComponent(locals.category) %>/deleteCategory" method="post">
-          <button>❌</button>
-        </form>
-</div>
+  <div class="category-actions">
+    <button command="show-modal" commandfor="change-category-name">✏️</button>
+    <form action="/category/<%= encodeURIComponent(locals.category) %>/deleteCategory" method="post">
+      <button>❌</button>
+    </form>
+  </div>
 
   <dialog id="change-category-name">
     <form action="/category/<%= encodeURIComponent(locals.category) %>/updateName" method="post">
@@ -44,4 +44,5 @@
     <button class="add-category-btn">+</button>
   </a>
 </body>
+
 </html>

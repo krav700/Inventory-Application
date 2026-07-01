@@ -7,7 +7,7 @@ const validateUser = [
         .notEmpty()
         .withMessage(`User password must not be empty.`)
         .equals("admin")
-        .withMessage(`User password is incorect.`)
+        .withMessage(`User password is incorect.`),
 ];
 
 async function getCategories(req, res) {
@@ -34,12 +34,12 @@ const authUser = [
         }
 
         req.session.auth = "approved";
-        const backUrl = req.get('Referrer') || '/';
+        const backUrl = req.get("Referrer") || "/";
         res.redirect(backUrl);
     },
 ];
 
 module.exports = {
     getCategories,
-    authUser
+    authUser,
 };

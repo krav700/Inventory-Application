@@ -7,10 +7,12 @@
         <link rel="stylesheet" href="/globals.css" />
     </head>
     <body>
-        <%- include('../header') %>
-        <%- include('../partials/errors') %>
+        <%- include('../header') %> <%- include('../partials/errors') %>
         <h2 class="form-title">Edit a new Part</h2>
-        <form action="/parts/<%= encodeURIComponent(locals.partName) %>/update" method="post">
+        <form
+            action="/parts/<%= encodeURIComponent(locals.partName) %>/update"
+            method="post"
+        >
             <input
                 type="text"
                 name="oldPartName"

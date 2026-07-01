@@ -4,15 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Inventory Application | Add Part</title>
-        <link rel="stylesheet" href="/globals.css">
+        <link rel="stylesheet" href="/globals.css" />
     </head>
     <body>
-        <%- include('../header') %>
-        <%- include('../partials/errors') %>
+        <%- include('../header') %> <%- include('../partials/errors') %>
         <h2 class="form-title">Admin Password Check</h2>
         <form action="/auth" method="POST">
             <label for="adminPassword">Admin Password:</label>
-            <br>
+            <br />
             <input
                 type="text"
                 id="adminPassword"
